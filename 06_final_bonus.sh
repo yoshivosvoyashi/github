@@ -1,11 +1,20 @@
 #!/bin/bash
-
+set -euo pipefail 
+IFS=$'\n\t'
 # --- ИНИЦИАЛИЗАЦИЯ ФУНКЦИЙ ---
 log_info() { echo "[$(date +%T)] INFO: $1"; }
 log_error() { echo "[$(date +%T)] ERROR: $1" >&2; }
 
+# --- ХРАНЕНИЕ РЕЗЕРВНЫХ КОПИЙ ---
+BACKUP_DAYS=1
+
+# --- ОЧИСТКА РЕЗЕРВНЫХ КОПИЙ СТАРШЕ 1 ДНЯ ---
+find . -maxdepth 1 -type d -name "backups_*" -mtime +"$BACKUP_DAYS" -exec rm -rf {} \;
+
+
+
 # --- ПРОВЕРКА АРГУМЕНТОВ ---
-TARGET_DIR=$1
+TARGET_DIR="/var/log"
 if [[ -z "$TARGET_DIR" || ! -d "$TARGET_DIR" ]]; then
     log_error "Укажите корректный путь к директории логов."
     exit 1
