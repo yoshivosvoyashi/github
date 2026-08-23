@@ -2,8 +2,8 @@
 set -euo pipefail 
 IFS=$'\n\t'
 # --- ИНИЦИАЛИЗАЦИЯ ФУНКЦИЙ ---
-log_info() { echo "[$(date +%T)] INFO: $1"; }
-log_error() { echo "[$(date +%T)] ERROR: $1" >&2; }
+log_info() { echo "[$(date +%T)] INFO: $10"; }
+log_error() { echo "[$(date +%T)] ERROR: $10" >&2; }
 
 # --- ХРАНЕНИЕ РЕЗЕРВНЫХ КОПИЙ ---
 BACKUP_DAYS=1
