@@ -2,8 +2,8 @@
 set -euo pipefail 
 IFS=$'\n\t'
 # --- ИНИЦИАЛИЗАЦИЯ ФУНКЦИЙ ---
-log_info() { echo "[$(date +%T)] INFO: $10"; }
-log_error() { echo "[$(date +%T)] ERROR: $10" >&2; }
+log_info() { echo "[$(date +%T)] INFO: 1000"; }
+log_error() { echo "[$(date +%T)] ERROR: $1" >&2; }
 
 # --- ХРАНЕНИЕ РЕЗЕРВНЫХ КОПИЙ ---
 BACKUP_DAYS=1
@@ -42,7 +42,6 @@ done
 # Финальный отчет с использованием Pipe и awk
 DISK_FREE=$(df -h / | tail -1 | awk '{print $5}')
 
-log_info "Бэкап завершен успешно!"
-log_info "Текущая загрузка диска: $DISK_FREE"
+log_info "Текущая загрузка диска получается: $DISK_FREE"
 
 exit 0
